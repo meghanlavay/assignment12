@@ -88,7 +88,7 @@
 //   let _breed = breed;
 //   let _color = color;
 //   let _height = height;
-//   let _length= length;
+//   let _length = length;
 //   let checkType = function() {
 //     if(_type === 'cat') {
 //       return _type; 
@@ -108,3 +108,17 @@
 // myAnimal2.speak();
 
 // STEP 9
+// String.prototype.findWords = function(text, word) {
+//   let i =0;
+//   count = 0;
+//   let textArr = text.split(' ');
+//   for(i; i < textArr.length; i++){
+//       if(textArr[i].toLowerCase() === word) {
+//           count +=1;
+//       }
+//   }
+//   alert(`The word ${word} can be found in the text ${count} times.`)
+// }
+
+// const newString = new String();
+// newString.findWords('In writing, the words point and purpose are almost synonymous. Your point is your purpose, and how you decide to make your point clear to your reader is also your purpose. Writers have a point and a purpose for every paragraph that they create.', 'point');

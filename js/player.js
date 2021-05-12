@@ -31,21 +31,59 @@ class Album {
     }
 }
 
-var jbox = new Jukebox();
-const album1 = new Album('Operation Ivy', 'Energy');
-const album2 = new Album('Blink 182', 'Dude Ranch');
-const album3 = new Album('New Found Glory', 'Sticks and Stones');
+// const album1 = new Album('Operation Ivy', 'Energy');
+// const album2 = new Album('Blink 182', 'Dude Ranch');
+// const album3 = new Album('New Found Glory', 'Sticks and Stones');
 
-jbox.addAlbum(album1);
-jbox.addAlbum(album2);
-jbox.addAlbum(album3);
+// jbox.addAlbum(album1);
+// jbox.addAlbum(album2);
+// jbox.addAlbum(album3);
 
-album1.play();
-album2.play();
-album2.play();
-album2.play();
-album2.play();
-album2.play();
-album3.play();
+// album1.play();
+// album2.play();
+// album2.play();
+// album2.play();
+// album2.play();
+// album2.play();
+// album3.play();
 
-console.log(`Your favorite album is: ${jbox.favoriteAlbum()}`);
+
+let jbox = new Jukebox();
+
+window.addEventListener('load', init);
+function init() {
+    
+    let select = document.getElementById("albums");
+    let playBtn = document.getElementById("playBtn");
+    let favBtn = document.getElementById("favBtn");
+    let paragraph = document.getElementById("favoriteAlbum");
+    let arr = [['Operation Ivy', 'Energy'], ['Blink 182', 'Dude Ranch'], ['New Found Glory', 'Sticks and Stones']];
+
+    for (let i=0; i < arr.length ; i++) {
+         let albumChoices = arr[i];
+         let opt = document.createElement('option');
+         opt.textContent = `${albumChoices[0]} / ${albumChoices[1]}`;
+         opt.value = albumChoices[0] ;
+         select.appendChild(opt);
+
+         const album = new Album(albumChoices[0],albumChoices[1]);
+         jbox.addAlbum(album);
+    }
+
+    playBtn.addEventListener('click', () => {
+        console.log(select.value);
+        for (let i=0; i< jbox.albums.length; i++) {
+            if (jbox.albums[i].artist === select.value){
+                jbox.albums[i].play();
+            }
+        }
+        
+        paragraph.innerText = `You are currently playing ${select.value}`;
+    });
+
+    favBtn.addEventListener('click', () => {
+        paragraph.innerText = `Your favorite album is: ${jbox.favoriteAlbum()}`;
+        console.log(`Your favorite album is: ${jbox.favoriteAlbum()}`);
+    });
+
+}
